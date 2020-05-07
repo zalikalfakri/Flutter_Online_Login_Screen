@@ -1,0 +1,87 @@
+import 'package:flutter/material.dart';
+import 'package:temangabuts/homescreen.dart';
+
+class LoginScreen extends StatefulWidget {
+  @override
+  _LoginScreenState createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  TextEditingController _username = TextEditingController();
+  TextEditingController _password = TextEditingController();
+  @override
+  Widget build(BuildContext context) {
+    var width = MediaQuery.of(context).size.width;
+    var height = MediaQuery.of(context).size.height;
+    return SafeArea(
+        child: Scaffold(
+      backgroundColor: Color(0xFFccebff),
+      body: Center(
+        child: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              Container(
+                child: Image(
+                  image: AssetImage('images/logo.png'),
+                  width: width / 2,
+                ),
+              ),
+              SizedBox(height: 20),
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: width * 0.20),
+                child: Column(
+                  children: <Widget>[
+                    TextFormField(
+                      controller: _username,
+                      decoration: InputDecoration(
+                          hintText: 'username',
+                          icon: Icon(Icons.supervised_user_circle)),
+                    ),
+                    SizedBox(height: 20),
+                    TextFormField(
+                      controller: _password,
+                      obscureText: true,
+                      decoration: InputDecoration(
+                          hintText: 'password', icon: Icon(Icons.lock)),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 20),
+              Container(
+                width: width * 0.65,
+                child: RaisedButton(
+                  splashColor: Colors.white,
+                  color: Color(0xFF1f7fb7),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20)),
+                  onPressed: () {
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (context) => HomeScreen()));
+                  },
+                  child: Text(
+                    'Login',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ),
+              ),
+              SizedBox(height: 10),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text("Don't have account ? "),
+                  InkWell(
+                      onTap: () {},
+                      child: Text(
+                        'Sign up',
+                        style: TextStyle(color: Color(0xFF1f7fb7)),
+                      ))
+                ],
+              )
+            ],
+          ),
+        ),
+      ),
+    ));
+  }
+}
